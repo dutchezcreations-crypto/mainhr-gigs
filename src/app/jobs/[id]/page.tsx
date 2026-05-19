@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { 
   MapPin, 
@@ -15,14 +13,14 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import styles from "./JobDetails.module.css";
-import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function JobDetailPage() {
   const params = useParams();
   const id = params?.id as string;
-  const router = useRouter();
-  const supabase = createClient();
+  const navigate = useNavigate();
+  const supabase = createClient() as any;
   
   const [job, setJob] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -78,7 +76,7 @@ export default function JobDetailPage() {
   const handleApply = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!currentUser) {
-      router.push(`/auth/login?next=/jobs/${id}`);
+      navigate(`/auth/login?next=/jobs/${id}`);
       return;
     }
 
@@ -111,14 +109,14 @@ export default function JobDetailPage() {
   if (!job) return (
     <div className="container p-20 text-center">
       <h2 className="text-2xl font-bold mb-4">Job not found</h2>
-      <Link href="/jobs" className="btn btn-primary">Back to Jobs</Link>
+      <Link to="/jobs" className="btn btn-primary">Back to Jobs</Link>
     </div>
   );
 
   return (
     <div className={styles.container}>
       <div className="container">
-        <Link href="/jobs" className="inline-flex items-center gap-2 text-neutral-500 hover:text-neutral-900 mb-8 font-semibold">
+        <Link to="/jobs" className="inline-flex items-center gap-2 text-neutral-500 hover:text-neutral-900 mb-8 font-semibold">
           <ArrowLeft size={18} /> Back to Search
         </Link>
 

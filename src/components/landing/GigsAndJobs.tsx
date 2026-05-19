@@ -1,7 +1,5 @@
-"use client";
-
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { 
   Star, 
   Clock, 
@@ -198,7 +196,7 @@ const MOCK_JOBS = [
 ];
 
 export function GigsAndJobs() {
-  const supabase = createClient();
+  const supabase = createClient() as any;
   const [gigs, setGigs] = useState<any[]>([]);
   const [jobs, setJobs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -279,7 +277,7 @@ export function GigsAndJobs() {
               <h3 className={styles.groupTitle}>Trending Freelance Services</h3>
               <p className={styles.groupSubtitle}>Pre-scoped gigs offered by top-rated verified Ugandan specialists</p>
             </div>
-            <Link href="/gigs" className={styles.exploreLink}>
+            <Link to="/gigs" className={styles.exploreLink}>
               Explore More Gigs <ArrowRight size={16} />
             </Link>
           </div>
@@ -291,7 +289,7 @@ export function GigsAndJobs() {
               ))
             ) : (
               gigs.map((gig) => (
-                <Link key={gig.id} href={`/gigs/${gig.id}`} className={styles.gigCard}>
+                <Link key={gig.id} to={`/gigs/${gig.id}`} className={styles.gigCard}>
                   <div 
                     className={styles.gigCardBanner}
                     style={
@@ -355,7 +353,7 @@ export function GigsAndJobs() {
           </div>
           
           <div className={styles.mobileExploreBtnContainer}>
-            <Link href="/gigs" className="btn btn-outline" style={{ width: "100%" }}>
+            <Link to="/gigs" className="btn btn-outline" style={{ width: "100%" }}>
               Explore More Gigs
             </Link>
           </div>
@@ -368,7 +366,7 @@ export function GigsAndJobs() {
               <h3 className={styles.groupTitle}>High-Paying Job Openings</h3>
               <p className={styles.groupSubtitle}>Urgent opportunities posted by companies looking for top talent</p>
             </div>
-            <Link href="/jobs" className={styles.exploreLink}>
+            <Link to="/jobs" className={styles.exploreLink}>
               Explore More Jobs <ArrowRight size={16} />
             </Link>
           </div>
@@ -380,7 +378,7 @@ export function GigsAndJobs() {
               ))
             ) : (
               jobs.map((job) => (
-                <Link key={job.id} href={`/jobs/${job.id}`} className={styles.jobCard}>
+                <Link key={job.id} to={`/jobs/${job.id}`} className={styles.jobCard}>
                   <div className={styles.jobCardHeader}>
                     <div className={styles.jobBadges}>
                       <span className={`${styles.badgePill} ${styles.badgeType}`}>
@@ -421,7 +419,7 @@ export function GigsAndJobs() {
           </div>
 
           <div className={styles.mobileExploreBtnContainer}>
-            <Link href="/jobs" className="btn btn-outline" style={{ width: "100%" }}>
+            <Link to="/jobs" className="btn btn-outline" style={{ width: "100%" }}>
               Explore More Jobs
             </Link>
           </div>

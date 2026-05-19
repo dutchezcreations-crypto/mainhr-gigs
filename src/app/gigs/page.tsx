@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, Suspense } from "react";
 import { 
   Search, 
@@ -12,13 +10,13 @@ import {
   Loader2
 } from "lucide-react";
 import styles from "./GigsPage.module.css";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { createClient } from "@/lib/supabase/client";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams } from "react-router-dom";
 
 function GigsContent() {
-  const searchParams = useSearchParams();
-  const supabase = createClient();
+  const [searchParams] = useSearchParams();
+  const supabase = createClient() as any;
   const [gigs, setGigs] = useState<any[]>([]);
   const [categories, setCategories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -134,7 +132,7 @@ function GigsContent() {
               </div>
             ) : (
               gigs.map(gig => (
-                <Link key={gig.id} href={`/gigs/${gig.id}`} className={styles.card}>
+                <Link key={gig.id} to={`/gigs/${gig.id}`} className={styles.card}>
                   <div 
                     className={styles.cardImage}
                     style={

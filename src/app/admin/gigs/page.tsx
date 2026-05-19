@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { 
   Check, 
@@ -10,10 +8,10 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import styles from "../Admin.module.css";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 
 export default function AdminGigsPage() {
-  const supabase = createClient();
+  const supabase = createClient() as any;
   const [gigs, setGigs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("active"); // In gigs, 'active' is the default published status
@@ -108,7 +106,7 @@ export default function AdminGigsPage() {
                   </td>
                   <td>
                     <div className={styles.actions}>
-                      <Link href={`/gigs/${gig.id}`} target="_blank" className={styles.actionBtn}>
+                      <Link to={`/gigs/${gig.id}`} target="_blank" className={styles.actionBtn}>
                         <ExternalLink size={16} />
                       </Link>
                       {filter !== "active" && (

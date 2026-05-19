@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, useRef } from "react";
 import { 
   ChevronLeft, 
@@ -11,14 +9,14 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import styles from "../../new/CreateGig.module.css";
-import Link from "next/link";
-import { useRouter, useParams } from "next/navigation";
+import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function EditGigPage() {
-  const router = useRouter();
+  const navigate = useNavigate();
   const params = useParams();
   const id = params?.id as string;
-  const supabase = createClient();
+  const supabase = createClient() as any;
   const fileInputRef = useRef<HTMLInputElement>(null);
   
   const [loading, setLoading] = useState(false);
@@ -72,13 +70,13 @@ export default function EditGigPage() {
         }
       } catch (err: any) {
         alert("Failed to load gig details: " + err.message);
-        router.push("/dashboard/gigs");
+        navigate("/dashboard/gigs");
       } finally {
         setFetching(false);
       }
     }
     fetchGigDetails();
-  }, [id, supabase, router]);
+  }, [id, supabase, navigate]);
 
   // Convert file to Base64 helper
   const convertToBase64 = (file: File): Promise<string> => {
@@ -179,8 +177,7 @@ export default function EditGigPage() {
       // Clean up localStorage cached preview
       localStorage.removeItem("temp_gig_image_base64");
 
-      router.push("/dashboard/gigs");
-      router.refresh();
+      navigate("/dashboard/gigs");
     } catch (err: any) {
       alert(err.message);
     } finally {
@@ -199,7 +196,7 @@ export default function EditGigPage() {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <Link href="/dashboard/gigs" className="flex items-center text-neutral-500 font-bold mb-4 hover:text-primary-600 transition-colors">
+        <Link to="/dashboard/gigs" className="flex items-center text-neutral-500 font-bold mb-4 hover:text-primary-600 transition-colors">
           <ChevronLeft size={18} /> Back to My Gigs
         </Link>
         <h1 className={styles.title}>Edit Service Details</h1>
@@ -317,7 +314,7 @@ export default function EditGigPage() {
         </div>
 
         <div className={styles.footer}>
-          <button type="button" className="btn btn-ghost" onClick={() => router.back()}>Cancel</button>
+          <button type="button" className="btn btn-ghost" onClick={() => navigate(-1)}>Cancel</button>
           <button type="submit" className="btn btn-primary" disabled={loading}>
             {loading ? <Loader2 className="animate-spin mr-2" /> : <Save size={18} className="mr-2" />}
             Save Changes

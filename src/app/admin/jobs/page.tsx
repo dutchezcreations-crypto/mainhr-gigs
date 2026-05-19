@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { 
   Check, 
@@ -14,7 +12,7 @@ import { createClient } from "@/lib/supabase/client";
 import styles from "../Admin.module.css";
 
 export default function AdminJobsPage() {
-  const supabase = createClient();
+  const supabase = createClient() as any;
   const [jobs, setJobs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("pending");

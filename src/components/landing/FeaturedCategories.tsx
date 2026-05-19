@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { 
   Code, 
   Palette, 
@@ -32,14 +32,14 @@ export function FeaturedCategories() {
             <div className="section-label">Browse by Talent</div>
             <h2 className="section-title">Explore <span className="text-gradient">Categories</span></h2>
           </div>
-          <Link href="/categories" className="btn btn-outline">
+          <Link to="/categories" className="btn btn-outline">
             View All Categories <ArrowRight size={18} />
           </Link>
         </div>
 
         <div className={styles.grid}>
           {categories.map((cat) => (
-            <Link key={cat.slug} href={`/categories/${cat.slug}`} className={styles.card}>
+            <Link key={cat.slug} to={`/categories/${cat.slug}`} className={styles.card}>
               <div className={styles.iconWrapper}>
                 {cat.icon}
               </div>

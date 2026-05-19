@@ -1,7 +1,5 @@
-"use client";
-
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { 
   TrendingUp, 
   Clock, 
@@ -20,7 +18,7 @@ import ProjectSpotlight from "@/components/dashboard/ProjectSpotlight";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function DashboardOverview() {
-  const supabase = createClient();
+  const supabase = createClient() as any;
   const [profile, setProfile] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [activeJobs, setActiveJobs] = useState<any[]>([]);
@@ -92,7 +90,7 @@ export default function DashboardOverview() {
           table: "notifications",
           filter: `user_id=eq.${userId}`,
         },
-        (payload) => {
+        (payload: any) => {
           setNotifications((prev) => [payload.new, ...prev].slice(0, 10));
         }
       )
@@ -126,7 +124,7 @@ export default function DashboardOverview() {
           <h1 className={styles.title}>Welcome back, {profile?.full_name?.split(' ')[0] || 'there'}!</h1>
           <p className={styles.subtitle}>Here's what's happening with your {profile?.role === 'employer' ? 'hiring' : 'projects'} today.</p>
         </div>
-        <Link href={profile?.role === 'employer' ? "/dashboard/jobs/post" : "/gigs"} className="btn btn-primary">
+        <Link to={profile?.role === 'employer' ? "/dashboard/jobs/post" : "/gigs"} className="btn btn-primary">
           {profile?.role === 'employer' ? "Post a New Job" : "Find New Work"} <ArrowRight size={18} />
         </Link>
       </div>
@@ -157,7 +155,7 @@ export default function DashboardOverview() {
         <div className={styles.card}>
           <div className={styles.cardHeader}>
             <h2 className={styles.cardTitle}>{profile?.role === 'employer' ? "Your Recent Jobs" : "Recent Applications"}</h2>
-            <Link href={profile?.role === 'employer' ? "/dashboard/jobs" : "/dashboard/applications"} className={styles.viewAll}>View all</Link>
+            <Link to={profile?.role === 'employer' ? "/dashboard/jobs" : "/dashboard/applications"} className={styles.viewAll}>View all</Link>
           </div>
           <div className={styles.jobList}>
             {activeJobs.map((job) => (
@@ -170,11 +168,11 @@ export default function DashboardOverview() {
                 </div>
                 <div className={styles.actions}>
                   {job.status === 'in_progress' ? (
-                    <Link href={`/dashboard/projects/${job.job_id || job.id}`} className={styles.actionBtn}>
+                    <Link to={`/dashboard/projects/${job.job_id || job.id}`} className={styles.actionBtn}>
                       <ExternalLink size={16} />
                     </Link>
                   ) : (
-                    <Link href={`/dashboard/jobs/${job.id}/applicants`} className={styles.actionBtn}>
+                    <Link to={`/dashboard/jobs/${job.id}/applicants`} className={styles.actionBtn}>
                       <ExternalLink size={16} />
                     </Link>
                   )}
@@ -197,7 +195,7 @@ export default function DashboardOverview() {
                <Bell size={20} className="text-primary-600" />
                <h2 className={styles.cardTitle}>Recent Activity</h2>
             </div>
-            <Link href="/dashboard/messages" className={styles.viewAll}>Go to Inbox</Link>
+            <Link to="/dashboard/messages" className={styles.viewAll}>Go to Inbox</Link>
           </div>
           <div className="p-2 space-y-1">
              <AnimatePresence initial={false}>

@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { 
   Plus, 
@@ -14,10 +12,10 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import styles from "./ManageGigs.module.css";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 
 export default function ManageGigsPage() {
-  const supabase = createClient();
+  const supabase = createClient() as any;
   const [gigs, setGigs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -56,7 +54,7 @@ export default function ManageGigsPage() {
     <div className={styles.container}>
       <header className={styles.header}>
         <h1 className={styles.title}>My Services</h1>
-        <Link href="/dashboard/gigs/new" className="btn btn-primary">
+        <Link to="/dashboard/gigs/new" className="btn btn-primary">
           <Plus size={18} className="mr-2" /> Create New Gig
         </Link>
       </header>
@@ -70,7 +68,7 @@ export default function ManageGigsPage() {
           <ImageIcon size={48} className="mx-auto mb-4 opacity-20" />
           <h2 className="text-xl font-bold">No services listed yet</h2>
           <p className="text-neutral-500 mb-6">Create your first gig to start attracting clients!</p>
-          <Link href="/dashboard/gigs/new" className="btn btn-primary">Get Started</Link>
+          <Link to="/dashboard/gigs/new" className="btn btn-primary">Get Started</Link>
         </div>
       ) : (
         <div className={styles.grid}>
@@ -110,7 +108,7 @@ export default function ManageGigsPage() {
                   <span>From</span> UGX {gig.price?.toLocaleString()}
                 </div>
                 <div className={styles.actions}>
-                  <Link href={`/dashboard/gigs/${gig.id}/edit`} className={styles.actionBtn}>
+                  <Link to={`/dashboard/gigs/${gig.id}/edit`} className={styles.actionBtn}>
                     <Edit2 size={16} />
                   </Link>
                   <button className={styles.actionBtn} onClick={() => handleDelete(gig.id)}>

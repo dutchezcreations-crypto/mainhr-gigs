@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { 
   Wallet, 
@@ -30,7 +28,7 @@ import { exportToCSV } from "@/lib/utils/export";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function BillingPage() {
-  const supabase = createClient();
+  const supabase = createClient() as any;
   
   // Dashboard state
   const [balance, setBalance] = useState(0);

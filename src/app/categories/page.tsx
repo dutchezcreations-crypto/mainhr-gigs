@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { 
   Search, 
@@ -23,7 +21,7 @@ import {
   Truck,
   ShoppingCart
 } from "lucide-react";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { createClient } from "@/lib/supabase/client";
 import styles from "./CategoriesPage.module.css";
 
@@ -48,7 +46,7 @@ const iconMap: Record<string, any> = {
 };
 
 export default function CategoriesPage() {
-  const supabase = createClient();
+  const supabase = createClient() as any;
   const [categories, setCategories] = useState<any[]>([]);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -135,7 +133,7 @@ export default function CategoriesPage() {
                     {cat.subcategories?.map((sub: any) => (
                       <Link 
                         key={sub.id} 
-                        href={`/jobs?subcategory=${sub.id}`}
+                        to={`/jobs?subcategory=${sub.id}`}
                         className={styles.subcatItem}
                         onClick={(e) => e.stopPropagation()}
                       >

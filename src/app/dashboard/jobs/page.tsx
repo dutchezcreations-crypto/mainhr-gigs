@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { 
   Plus, 
@@ -16,11 +14,11 @@ import {
   CheckCircle2
 } from "lucide-react";
 import styles from "./Jobs.module.css";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { createClient } from "@/lib/supabase/client";
 
 export default function JobsPage() {
-  const supabase = createClient();
+  const supabase = createClient() as any;
   const [activeTab, setActiveTab] = useState("all");
   const [jobs, setJobs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -77,7 +75,7 @@ export default function JobsPage() {
           <h1 className={styles.title}>Manage Jobs</h1>
           <p className={styles.subtitle}>Track your job postings and applications in one place</p>
         </div>
-        <Link href="/dashboard/jobs/post" className="btn btn-primary">
+        <Link to="/dashboard/jobs/post" className="btn btn-primary">
           <Plus size={18} /> Post a Job
         </Link>
       </div>
@@ -151,7 +149,7 @@ export default function JobsPage() {
                       </div>
                     </td>
                     <td>
-                      <Link href={`/dashboard/jobs/${job.id}/applicants`} className={styles.apps}>
+                      <Link to={`/dashboard/jobs/${job.id}/applicants`} className={styles.apps}>
                         <Users size={16} />
                         <span>{job.applications?.length || 0} applicants</span>
                       </Link>
@@ -167,11 +165,11 @@ export default function JobsPage() {
                     <td>
                       <div className={styles.actions}>
                         {job.status === 'in_progress' ? (
-                          <Link href={`/dashboard/projects/${job.id}`} className={styles.actionBtn} title="Manage Project">
+                          <Link to={`/dashboard/projects/${job.id}`} className={styles.actionBtn} title="Manage Project">
                             <ExternalLink size={16} />
                           </Link>
                         ) : (
-                          <Link href={`/jobs/${job.id}`} className={styles.actionBtn} title="View Post">
+                          <Link to={`/jobs/${job.id}`} className={styles.actionBtn} title="View Post">
                             <ExternalLink size={16} />
                           </Link>
                         )}

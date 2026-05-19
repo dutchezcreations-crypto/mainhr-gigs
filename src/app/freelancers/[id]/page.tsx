@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { 
   Users, 
@@ -14,19 +12,20 @@ import {
   Trophy,
   Loader2,
   ExternalLink,
-  CheckCircle2
+  CheckCircle2,
+  Image as ImageIcon
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import styles from "./Profile.module.css";
-import { useParams, useRouter } from "next/navigation";
-import Link from "next/link";
+import { useParams, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ReviewCard from "@/components/reviews/ReviewCard";
 
 export default function FreelancerProfilePage() {
   const params = useParams();
   const id = params?.id as string;
-  const router = useRouter();
-  const supabase = createClient();
+  const navigate = useNavigate();
+  const supabase = createClient() as any;
   
   const [profile, setProfile] = useState<any>(null);
   const [reviews, setReviews] = useState<any[]>([]);
@@ -83,7 +82,7 @@ export default function FreelancerProfilePage() {
   if (!profile) return (
     <div className="container py-20 text-center">
       <h2 className="text-2xl font-bold">Freelancer not found</h2>
-      <Link href="/freelancers" className="btn btn-primary mt-4">Back to Discovery</Link>
+      <Link to="/freelancers" className="btn btn-primary mt-4">Back to Discovery</Link>
     </div>
   );
 

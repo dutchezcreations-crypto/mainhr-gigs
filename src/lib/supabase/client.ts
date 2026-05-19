@@ -1,13 +1,16 @@
-import { createBrowserClient } from "@supabase/ssr";
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 
-let supabaseClient: ReturnType<typeof createBrowserClient> | null = null;
+const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL || import.meta.env.NEXT_PUBLIC_SUPABASE_URL || "") as string;
+const supabaseAnonKey = (import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "") as string;
+
+let supabaseClient: ReturnType<typeof createSupabaseClient> | null = null;
 
 export function createClient() {
   if (!supabaseClient) {
-    supabaseClient = createBrowserClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    );
+    if (!supabaseUrl || !supabaseAnonKey) {
+      console.warn("Supabase credentials missing. Make sure VITE_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_URL is set.");
+    }
+    supabaseClient = createSupabaseClient(supabaseUrl, supabaseAnonKey);
   }
   return supabaseClient;
 }

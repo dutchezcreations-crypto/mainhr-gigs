@@ -1,20 +1,14 @@
-"use client";
-
-import Link from "next/link";
-import { Zap, ArrowLeft } from "lucide-react";
+import { Link, Outlet } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import { Logo } from "@/components/layout/Logo";
 import styles from "./AuthLayout.module.css";
 
-export default function AuthLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AuthLayout() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.visual}>
         <div className={styles.visualContent}>
-          <Link href="/" className={styles.logo}>
+          <Link to="/" className={styles.logo}>
             <Logo height={38} />
           </Link>
           <div className={styles.quote}>
@@ -29,10 +23,10 @@ export default function AuthLayout({
       
       <div className={styles.formSection}>
         <div className={styles.formContainer}>
-          <Link href="/" className={styles.backLink}>
+          <Link to="/" className={styles.backLink}>
             <ArrowLeft size={16} /> Back to home
           </Link>
-          {children}
+          <Outlet />
         </div>
       </div>
     </div>

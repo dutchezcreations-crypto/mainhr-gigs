@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { 
   Plus, 
@@ -16,7 +14,7 @@ import { createClient } from "@/lib/supabase/client";
 import styles from "../Admin.module.css";
 
 export default function AdminCategoriesPage() {
-  const supabase = createClient();
+  const supabase = createClient() as any;
   const [categories, setCategories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [expandedCats, setExpandedCats] = useState<string[]>([]);

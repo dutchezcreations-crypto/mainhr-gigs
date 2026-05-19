@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { 
   Search, 
@@ -14,10 +12,10 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import styles from "./Discovery.module.css";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 
 export default function FreelancerDiscoveryPage() {
-  const supabase = createClient();
+  const supabase = createClient() as any;
   const [freelancers, setFreelancers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   
@@ -118,7 +116,7 @@ export default function FreelancerDiscoveryPage() {
                 </div>
               ) : (
                 freelancers.map(talent => (
-                  <Link key={talent.id} href={`/freelancers/${talent.id}`} className={styles.freelancerCard}>
+                  <Link key={talent.id} to={`/freelancers/${talent.id}`} className={styles.freelancerCard}>
                     <div className={styles.cardHeader}>
                       <div className={styles.avatar}>
                         {talent.avatar_url ? <img src={talent.avatar_url} alt="" /> : <Users size={32} className="text-neutral-300" />}

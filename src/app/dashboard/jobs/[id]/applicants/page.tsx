@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { 
   Users, 
@@ -16,14 +14,14 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import styles from "./Applicants.module.css";
-import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function JobApplicantsPage() {
   const params = useParams();
   const id = params?.id as string;
-  const router = useRouter();
-  const supabase = createClient();
+  const navigate = useNavigate();
+  const supabase = createClient() as any;
   
   const [job, setJob] = useState<any>(null);
   const [applicants, setApplicants] = useState<any[]>([]);
@@ -129,7 +127,7 @@ export default function JobApplicantsPage() {
       .maybeSingle();
 
     if (existing) {
-      router.push(`/dashboard/messages?id=${existing.id}`);
+      navigate(`/dashboard/messages?id=${existing.id}`);
     } else {
       // Create new conversation
       const { data: newConv, error } = await supabase
@@ -146,7 +144,7 @@ export default function JobApplicantsPage() {
       if (error) {
         alert(error.message);
       } else {
-        router.push(`/dashboard/messages?id=${newConv.id}`);
+        navigate(`/dashboard/messages?id=${newConv.id}`);
       }
     }
     setUpdating(false);
@@ -161,7 +159,7 @@ export default function JobApplicantsPage() {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <Link href="/dashboard/jobs" className="inline-flex items-center gap-2 text-neutral-500 hover:text-neutral-900 mb-4 font-semibold">
+        <Link to="/dashboard/jobs" className="inline-flex items-center gap-2 text-neutral-500 hover:text-neutral-900 mb-4 font-semibold">
           <ArrowLeft size={16} /> Back to My Jobs
         </Link>
         <h1 className={styles.title}>Review Applicants</h1>

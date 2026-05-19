@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, Suspense } from "react";
 import { 
   Search, 
@@ -15,12 +13,12 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import styles from "./JobsPage.module.css";
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 function JobsContent() {
-  const searchParams = useSearchParams();
-  const supabase = createClient();
+  const [searchParams] = useSearchParams();
+  const supabase = createClient() as any;
   const [jobs, setJobs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState<any[]>([]);
@@ -158,7 +156,7 @@ function JobsContent() {
           <main>
             <div className={styles.jobList}>
               {loading ? (
-                Array(5).fill(0).map((_, i) => <div key={i} className={styles.loadingSkeleton} key={i}></div>)
+                Array(5).fill(0).map((_, i) => <div key={i} className={styles.loadingSkeleton}></div>)
               ) : jobs.length === 0 ? (
                 <div className={styles.empty}>
                    <Briefcase size={48} />
@@ -166,7 +164,7 @@ function JobsContent() {
                 </div>
               ) : (
                 jobs.map(job => (
-                  <Link key={job.id} href={`/jobs/${job.id}`} className={styles.jobCard}>
+                  <Link key={job.id} to={`/jobs/${job.id}`} className={styles.jobCard}>
                     <div className={styles.companyLogo}>
                       <Building2 size={24} />
                     </div>

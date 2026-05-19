@@ -1,7 +1,5 @@
-"use client";
-
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { 
   LayoutDashboard, 
   Briefcase, 
@@ -23,7 +21,7 @@ const navItems = [
 ];
 
 export default function AdminSidebar({ user }: { user: any }) {
-  const pathname = usePathname();
+  const { pathname } = useLocation();
 
   return (
     <aside className={styles.sidebar}>
@@ -37,7 +35,7 @@ export default function AdminSidebar({ user }: { user: any }) {
         {navItems.map((item) => (
           <Link 
             key={item.href} 
-            href={item.href}
+            to={item.href}
             className={`${styles.navItem} ${pathname === item.href ? styles.active : ""}`}
           >
             {item.icon}
@@ -54,7 +52,7 @@ export default function AdminSidebar({ user }: { user: any }) {
             <div className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">System Admin</div>
           </div>
         </div>
-        <Link href="/dashboard" className={`${styles.navItem} mt-4`}>
+        <Link to="/dashboard" className={`${styles.navItem} mt-4`}>
           <LogOut size={18} />
           Exit Admin
         </Link>

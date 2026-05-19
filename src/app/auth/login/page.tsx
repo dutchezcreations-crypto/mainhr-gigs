@@ -1,17 +1,15 @@
-"use client";
-
 import { useState, Suspense } from "react";
-import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { Link } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Mail, Lock, Chrome, Phone, ArrowRight, Loader2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import styles from "../AuthPages.module.css";
 
 function LoginContent() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const nextRoute = searchParams.get("next") || "/dashboard";
-  const supabase = createClient();
+  const supabase = createClient() as any;
   const [authMethod, setAuthMethod] = useState<"email" | "phone">("email");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -35,8 +33,7 @@ function LoginContent() {
         setError(error.message);
         setLoading(false);
       } else {
-        router.push(nextRoute);
-        router.refresh();
+        navigate(nextRoute);
       }
     } catch (err) {
       setError("An unexpected error occurred. Please try again.");
@@ -138,7 +135,7 @@ function LoginContent() {
         <div className="input-group">
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <label className="input-label">Password</label>
-            <Link href="/auth/forgot-password" className={styles.forgotLink}>Forgot password?</Link>
+            <Link to="/auth/forgot-password" className={styles.forgotLink}>Forgot password?</Link>
           </div>
           <div className={styles.inputWrapper}>
             <Lock className={styles.inputIcon} size={18} />
@@ -164,7 +161,7 @@ function LoginContent() {
       </form>
 
       <p className={styles.footer}>
-        Don't have an account? <Link href="/auth/signup" className={styles.link}>Create an account</Link>
+        Don't have an account? <Link to="/auth/signup" className={styles.link}>Create an account</Link>
       </p>
     </div>
   );

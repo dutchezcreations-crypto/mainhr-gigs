@@ -1,13 +1,9 @@
-"use client";
-
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { Link, useLocation, useNavigate, Outlet } from "react-router-dom";
 import { 
   LayoutDashboard, 
   Briefcase, 
   MessageSquare, 
-  Bell, 
   Settings, 
   LogOut, 
   Search,
@@ -23,14 +19,10 @@ import styles from "./DashboardLayout.module.css";
 import NotificationCenter from "@/components/dashboard/NotificationCenter";
 import { createClient } from "@/lib/supabase/client";
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const pathname = usePathname();
-  const router = useRouter();
-  const supabase = createClient();
+export default function DashboardLayout() {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const supabase = createClient() as any;
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [profile, setProfile] = useState<any>(null);
 
@@ -41,7 +33,7 @@ export default function DashboardLayout({
   const fetchProfile = async () => {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
-      router.push("/auth/login");
+      navigate("/auth/login");
       return;
     }
 
@@ -56,7 +48,7 @@ export default function DashboardLayout({
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
-    router.push("/auth/login");
+    navigate("/auth/login");
   };
 
   interface SidebarLink {
@@ -84,7 +76,7 @@ export default function DashboardLayout({
     <div className={styles.wrapper}>
       {/* Mobile Header */}
       <header className={styles.mobileHeader}>
-        <Link href="/" className={styles.logo}>
+        <Link to="/" className={styles.logo}>
           <div className={styles.logoIcon}>
             <Zap size={20} />
           </div>
@@ -98,7 +90,7 @@ export default function DashboardLayout({
       {/* Sidebar */}
       <aside className={`${styles.sidebar} ${isSidebarOpen ? styles.sidebarOpen : ""}`}>
         <div className={styles.sidebarHeader}>
-          <Link href="/" className={styles.logo}>
+          <Link to="/" className={styles.logo}>
             <div className={styles.logoIcon}>
               <Zap size={20} />
             </div>
@@ -114,7 +106,7 @@ export default function DashboardLayout({
             {sidebarLinks.map((link) => (
               <Link 
                 key={link.href} 
-                href={link.href} 
+                to={link.href} 
                 className={`${styles.navLink} ${pathname === link.href ? styles.navLinkActive : ""}`}
                 onClick={() => setIsSidebarOpen(false)}
               >
@@ -158,14 +150,14 @@ export default function DashboardLayout({
           <div className={styles.topbarActions}>
             <NotificationCenter />
             <div className={styles.divider}></div>
-            <Link href="/dashboard/settings" className={styles.profileBtn}>
+            <Link to="/dashboard/settings" className={styles.profileBtn}>
               <User size={20} />
             </Link>
           </div>
         </header>
 
         <div className={styles.content}>
-          {children}
+          <Outlet />
         </div>
       </div>
 

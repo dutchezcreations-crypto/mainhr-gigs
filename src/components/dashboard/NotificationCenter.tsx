@@ -1,13 +1,11 @@
-"use client";
-
 import { useState, useEffect, useRef } from "react";
 import { Bell, X, Check, ExternalLink, Briefcase, MessageSquare, DollarSign, Loader2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import styles from "./NotificationCenter.module.css";
 
 export default function NotificationCenter() {
-  const supabase = createClient();
+  const supabase = createClient() as any;
   const [notifications, setNotifications] = useState<any[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -19,7 +17,7 @@ export default function NotificationCenter() {
     // Subscribe to new notifications
     const channel = supabase
       .channel('public:notifications')
-      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'notifications' }, (payload) => {
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'notifications' }, (payload: any) => {
         setNotifications(prev => [payload.new, ...prev]);
       })
       .subscribe();
@@ -109,7 +107,7 @@ export default function NotificationCenter() {
           </div>
 
           <div className={styles.footer}>
-            <Link href="/dashboard/settings/notifications">View all settings</Link>
+            <Link to="/dashboard/settings/notifications">View all settings</Link>
           </div>
         </div>
       )}

@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { 
   Plus, 
@@ -12,7 +10,7 @@ import {
   MessageSquare
 } from "lucide-react";
 import styles from "./Services.module.css";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 
 const services = [
   { id: 1, title: "I will design a modern fintech app UI", price: "UGX 450k", rating: 4.9, reviews: 24, views: "1.2k", status: "Published" },
@@ -28,7 +26,7 @@ export default function ServicesPage() {
           <h1 className={styles.title}>My Services</h1>
           <p className={styles.subtitle}>Manage your packaged service offerings and performance</p>
         </div>
-        <Link href="/dashboard/services/create" className="btn btn-primary">
+        <Link to="/dashboard/services/create" className="btn btn-primary">
           <Plus size={18} /> Create a Service
         </Link>
       </div>

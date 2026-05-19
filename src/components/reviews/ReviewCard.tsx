@@ -1,5 +1,3 @@
-"use client";
-
 import { Star, User } from "lucide-react";
 import styles from "./ReviewCard.module.css";
 

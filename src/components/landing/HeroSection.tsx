@@ -1,20 +1,18 @@
-"use client";
- 
 import { useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Search, Play, CheckCircle2, Zap } from "lucide-react";
 import styles from "./HeroSection.module.css";
 
 export function HeroSection() {
   const [query, setQuery] = useState("");
-  const router = useRouter();
+  const navigate = useNavigate();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
-      router.push(`/gigs?search=${encodeURIComponent(query)}`);
+      navigate(`/gigs?search=${encodeURIComponent(query)}`);
     }
   };
 
@@ -85,10 +83,10 @@ export function HeroSection() {
             className={styles.actions}
           >
             <div className={styles.mainActions}>
-              <Link href="/auth/signup?role=employer" className="btn btn-primary btn-lg">
+              <Link to="/auth/signup?role=employer" className="btn btn-primary btn-lg">
                 I want to Hire <ArrowRight size={18} />
               </Link>
-              <Link href="/auth/signup?role=freelancer" className="btn btn-outline btn-lg">
+              <Link to="/auth/signup?role=freelancer" className="btn btn-outline btn-lg">
                 I want to Work
               </Link>
             </div>

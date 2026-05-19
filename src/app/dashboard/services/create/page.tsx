@@ -1,7 +1,5 @@
-"use client";
-
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useNavigate } from "react-router-dom";
 import { 
   ArrowLeft, 
   Plus, 
@@ -15,8 +13,8 @@ import { createClient } from "@/lib/supabase/client";
 import styles from "./CreateService.module.css";
 
 export default function CreateServicePage() {
-  const router = useRouter();
-  const supabase = createClient();
+  const navigate = useNavigate();
+  const supabase = createClient() as any;
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState<{id: string, name: string}[]>([]);
@@ -70,7 +68,7 @@ export default function CreateServicePage() {
     const { data: { user } } = await supabase.auth.getUser();
     
     if (!user) {
-      router.push("/auth/login?next=/dashboard/services/create");
+      navigate("/auth/login?next=/dashboard/services/create");
       return;
     }
 
@@ -91,15 +89,14 @@ export default function CreateServicePage() {
       alert(error.message);
       setLoading(false);
     } else {
-      router.push("/dashboard/services");
-      router.refresh();
+      navigate("/dashboard/services");
     }
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <button className={styles.backBtn} onClick={() => router.back()}>
+        <button className={styles.backBtn} onClick={() => navigate(-1)}>
           <ArrowLeft size={18} /> Back
         </button>
         <h1 className={styles.title}>Create a Service</h1>

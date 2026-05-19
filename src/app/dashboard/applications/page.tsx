@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { 
   Briefcase, 
@@ -13,10 +11,10 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import styles from "./ApplicationsTracking.module.css";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 
 export default function MyApplicationsPage() {
-  const supabase = createClient();
+  const supabase = createClient() as any;
   const [applications, setApplications] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -66,7 +64,7 @@ export default function MyApplicationsPage() {
           <Briefcase size={64} className="mx-auto mb-4 opacity-20" />
           <h2 className="text-xl font-bold">No applications yet</h2>
           <p className="mb-8">Start applying for jobs to see your progress here.</p>
-          <Link href="/jobs" className="btn btn-primary">Browse Jobs</Link>
+          <Link to="/jobs" className="btn btn-primary">Browse Jobs</Link>
         </div>
       ) : (
         <div className={styles.grid}>
@@ -93,11 +91,11 @@ export default function MyApplicationsPage() {
               </div>
 
               {app.status === 'hired' || app.status === 'accepted' ? (
-                <Link href={`/dashboard/projects/${app.job_id}`} className="btn btn-primary btn-sm">
+                <Link to={`/dashboard/projects/${app.job_id}`} className="btn btn-primary btn-sm">
                   Manage Project <ChevronRight size={16} />
                 </Link>
               ) : (
-                <Link href={`/jobs/${app.job_id}`} className="btn btn-ghost btn-sm">
+                <Link to={`/jobs/${app.job_id}`} className="btn btn-ghost btn-sm">
                   View Job <ChevronRight size={16} />
                 </Link>
               )}

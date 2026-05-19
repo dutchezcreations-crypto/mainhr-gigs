@@ -1,12 +1,10 @@
-"use client";
-
 import { 
   Briefcase, 
   ArrowRight, 
   Circle,
   Calendar
 } from "lucide-react";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 interface ProjectSpotlightProps {
@@ -41,7 +39,7 @@ export default function ProjectSpotlight({ project, role }: ProjectSpotlightProp
 
       <div className="relative z-10 w-full md:w-auto shrink-0">
         <Link 
-          href={`/dashboard/projects/${project.job_id || project.id}`} 
+          to={`/dashboard/projects/${project.job_id || project.id}`} 
           className="btn btn-primary bg-white text-primary-900 hover:bg-primary-50 border-none px-8 py-4 h-auto rounded-2xl flex items-center gap-3 font-900"
         >
           Open Workspace <ArrowRight size={20} />

@@ -1,8 +1,6 @@
-"use client";
-
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Menu,
   X,
@@ -34,8 +32,8 @@ const navLinks = [
 ];
 
 export function Navbar() {
-  const supabase = createClient();
-  const router = useRouter();
+  const supabase = createClient() as any;
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -71,7 +69,7 @@ export function Navbar() {
     checkUser();
 
     // Listen to Auth Changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event: any, session: any) => {
       if (session?.user) {
         setUser(session.user);
         const { data: profileData } = await supabase
@@ -119,7 +117,7 @@ export function Navbar() {
     setUser(null);
     setProfile(null);
     setIsUserDropdownOpen(false);
-    router.push("/");
+    navigate("/");
   };
 
   return (
@@ -128,14 +126,14 @@ export function Navbar() {
     >
       <nav className={`container ${styles.nav}`}>
         {/* Logo */}
-        <Link href="/" className={styles.logo}>
+        <Link to="/" className={styles.logo}>
           <Logo height={32} />
         </Link>
 
         {/* Desktop Navigation */}
         <div className={styles.desktopNav}>
           {navLinks.map((link) => (
-            <Link key={link.label} href={link.href} className={styles.navLink}>
+            <Link key={link.label} to={link.href} className={styles.navLink}>
               {link.icon && (
                 <span className={styles.navIcon}>{link.icon}</span>
               )}
@@ -186,7 +184,7 @@ export function Navbar() {
                   <div className={styles.userDropdownDivider}></div>
                   
                   <Link 
-                    href="/dashboard" 
+                    to="/dashboard" 
                     className={styles.userDropdownLink}
                     onClick={() => setIsUserDropdownOpen(false)}
                   >
@@ -195,7 +193,7 @@ export function Navbar() {
                   </Link>
                   
                   <Link 
-                    href="/dashboard/settings" 
+                    to="/dashboard/settings" 
                     className={styles.userDropdownLink}
                     onClick={() => setIsUserDropdownOpen(false)}
                   >
@@ -214,10 +212,10 @@ export function Navbar() {
             </div>
           ) : (
             <>
-              <Link href="/auth/login" className="btn btn-ghost btn-sm">
+              <Link to="/auth/login" className="btn btn-ghost btn-sm">
                 Log In
               </Link>
-              <Link href="/auth/signup" className="btn btn-primary btn-sm">
+              <Link to="/auth/signup" className="btn btn-primary btn-sm">
                 Get Started
               </Link>
             </>
@@ -241,7 +239,7 @@ export function Navbar() {
             {navLinks.map((link) => (
               <Link
                 key={link.label}
-                href={link.href}
+                to={link.href}
                 className={styles.mobileNavLink}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -273,7 +271,7 @@ export function Navbar() {
                   </div>
                   
                   <Link
-                    href="/dashboard"
+                    to="/dashboard"
                     className="btn btn-outline"
                     style={{ width: "100%" }}
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -294,7 +292,7 @@ export function Navbar() {
               ) : (
                 <>
                   <Link
-                    href="/auth/login"
+                    to="/auth/login"
                     className="btn btn-outline"
                     style={{ width: "100%" }}
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -302,7 +300,7 @@ export function Navbar() {
                     Log In
                   </Link>
                   <Link
-                    href="/auth/signup"
+                    to="/auth/signup"
                     className="btn btn-primary"
                     style={{ width: "100%" }}
                     onClick={() => setIsMobileMenuOpen(false)}

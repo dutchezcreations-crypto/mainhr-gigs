@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, useRef } from "react";
 import { 
   Search, 
@@ -15,11 +13,11 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import styles from "./Messages.module.css";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams } from "react-router-dom";
 
 export default function MessagesPage() {
-  const supabase = createClient();
-  const searchParams = useSearchParams();
+  const supabase = createClient() as any;
+  const [searchParams] = useSearchParams();
   const initialId = searchParams?.get('id');
   const [conversations, setConversations] = useState<any[]>([]);
   const [messages, setMessages] = useState<any[]>([]);
@@ -87,7 +85,7 @@ export default function MessagesPage() {
             table: "messages",
             filter: `conversation_id=eq.${activeConv.id}`,
           },
-          (payload) => {
+          (payload: any) => {
             setMessages((prev) => [...prev, payload.new]);
             if (payload.new.sender_id !== currentUser?.id) {
                markAsRead(activeConv.id);
@@ -101,7 +99,7 @@ export default function MessagesPage() {
             .some((p: any) => p.user_id !== currentUser?.id && p.is_typing);
           setPartnerTyping(typing);
         })
-        .subscribe(async (status) => {
+        .subscribe(async (status: any) => {
           if (status === "SUBSCRIBED") {
             await channel.track({ user_id: currentUser?.id, is_typing: isTyping });
           }

@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { 
   Star, 
@@ -17,14 +15,14 @@ import {
 import { createClient } from "@/lib/supabase/client";
 import { Logo } from "@/components/layout/Logo";
 import styles from "./GigDetail.module.css";
-import { useParams, useRouter } from "next/navigation";
-import Link from "next/link";
+import { useParams, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function GigDetailPage() {
   const params = useParams();
   const id = params?.id as string;
-  const router = useRouter();
-  const supabase = createClient();
+  const navigate = useNavigate();
+  const supabase = createClient() as any;
   
   const [gig, setGig] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -54,7 +52,7 @@ export default function GigDetailPage() {
   const handlePurchase = async () => {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
-      router.push("/auth/login?redirect=" + encodeURIComponent(window.location.pathname));
+      navigate("/auth/login?redirect=" + encodeURIComponent(window.location.pathname));
       return;
     }
 
@@ -71,7 +69,7 @@ export default function GigDetailPage() {
       if (error) throw error;
 
       alert("Service purchased successfully!");
-      router.push(`/dashboard/projects/${projectId}`);
+      navigate(`/dashboard/projects/${projectId}`);
     } catch (err: any) {
       alert(err.message);
     } finally {
@@ -88,7 +86,7 @@ export default function GigDetailPage() {
   if (!gig) return (
     <div className="container py-20 text-center">
       <h2 className="text-2xl font-bold">Service not found</h2>
-      <Link href="/gigs" className="btn btn-primary mt-4">Back to Marketplace</Link>
+      <Link to="/gigs" className="btn btn-primary mt-4">Back to Marketplace</Link>
     </div>
   );
 
@@ -97,7 +95,7 @@ export default function GigDetailPage() {
       <div className="container">
         {/* Back Link & Breadcrumb aligned */}
         <div className={styles.navigationRow}>
-          <Link href="/gigs" className={styles.backLink}>
+          <Link to="/gigs" className={styles.backLink}>
             <ArrowLeft size={16} /> Marketplace
           </Link>
           <nav className={styles.breadcrumb}>
@@ -110,7 +108,7 @@ export default function GigDetailPage() {
             <h1 className={styles.title}>{gig.title}</h1>
             
             <div className={styles.authorRow}>
-              <Link href={`/freelancers/${gig.profiles?.id}`} className={styles.avatar}>
+              <Link to={`/freelancers/${gig.profiles?.id}`} className={styles.avatar}>
                 {gig.profiles?.avatar_url ? (
                   <img src={gig.profiles.avatar_url} alt={gig.profiles?.full_name || ""} />
                 ) : (
@@ -118,7 +116,7 @@ export default function GigDetailPage() {
                 )}
               </Link>
               <div>
-                <Link href={`/freelancers/${gig.profiles?.id}`} className={styles.authorName}>
+                <Link to={`/freelancers/${gig.profiles?.id}`} className={styles.authorName}>
                   {gig.profiles?.full_name}
                 </Link>
                 <div className={styles.rating}>

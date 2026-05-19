@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import {
   Zap,
   Mail,
@@ -54,10 +54,10 @@ export function Footer() {
             </p>
           </div>
           <div className={styles.ctaActions}>
-            <Link href="/auth/signup" className="btn btn-white btn-lg">
+            <Link to="/auth/signup" className="btn btn-white btn-lg">
               Start Hiring <ArrowUpRight size={18} />
             </Link>
-            <Link href="/auth/signup" className="btn btn-outline btn-lg" style={{ borderColor: "rgba(255,255,255,0.3)", color: "white" }}>
+            <Link to="/auth/signup" className="btn btn-outline btn-lg" style={{ borderColor: "rgba(255,255,255,0.3)", color: "white" }}>
               Start Earning
             </Link>
           </div>
@@ -69,7 +69,7 @@ export function Footer() {
         <div className={`container ${styles.grid}`}>
           {/* Brand Column */}
           <div className={styles.brandCol}>
-            <Link href="/" className={styles.logo}>
+            <Link to="/" className={styles.logo}>
               <Logo height={30} />
             </Link>
             <p className={styles.brandDesc}>
@@ -120,7 +120,7 @@ export function Footer() {
               <ul className={styles.linkList}>
                 {links.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className={styles.link}>
+                    <Link to={link.href} className={styles.link}>
                       {link.label}
                     </Link>
                   </li>
@@ -138,13 +138,13 @@ export function Footer() {
             © {new Date().getFullYear()} MainHR Gigs. All rights reserved.
           </p>
           <div className={styles.bottomLinks}>
-            <Link href="/privacy" className={styles.bottomLink}>
+            <Link to="/privacy" className={styles.bottomLink}>
               Privacy Policy
             </Link>
-            <Link href="/terms" className={styles.bottomLink}>
+            <Link to="/terms" className={styles.bottomLink}>
               Terms of Service
             </Link>
-            <Link href="/cookies" className={styles.bottomLink}>
+            <Link to="/cookies" className={styles.bottomLink}>
               Cookie Settings
             </Link>
           </div>

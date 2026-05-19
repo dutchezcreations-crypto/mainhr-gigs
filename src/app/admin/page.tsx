@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { 
   Users, 
@@ -14,11 +12,11 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import styles from "./Admin.module.css";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import AnalyticsChart from "@/components/analytics/AnalyticsChart";
 
 export default function AdminOverviewPage() {
-  const supabase = createClient();
+  const supabase = createClient() as any;
   const [stats, setStats] = useState<any>({
     users: 0,
     jobs: 0,
@@ -102,7 +100,7 @@ export default function AdminOverviewPage() {
           </div>
           <div className="p-6 space-y-4">
              {stats.pendingJobs > 0 && (
-               <Link href="/admin/jobs" className="flex items-center justify-between p-4 bg-error-50 border border-error-100 rounded-xl group transition-all hover:bg-error-100">
+               <Link to="/admin/jobs" className="flex items-center justify-between p-4 bg-error-50 border border-error-100 rounded-xl group transition-all hover:bg-error-100">
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 bg-error-100 rounded-full flex items-center justify-center text-error-600">
                       <Clock size={20} />
@@ -116,7 +114,7 @@ export default function AdminOverviewPage() {
                </Link>
              )}
 
-             <Link href="/admin/users" className="flex items-center justify-between p-4 bg-primary-50 border border-primary-100 rounded-xl group transition-all hover:bg-primary-100">
+             <Link to="/admin/users" className="flex items-center justify-between p-4 bg-primary-50 border border-primary-100 rounded-xl group transition-all hover:bg-primary-100">
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600">
                     <ShieldCheck size={20} />

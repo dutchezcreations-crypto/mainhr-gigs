@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { 
   ShieldCheck, 
@@ -13,7 +11,7 @@ import { createClient } from "@/lib/supabase/client";
 import styles from "../Admin.module.css";
 
 export default function AdminUsersPage() {
-  const supabase = createClient();
+  const supabase = createClient() as any;
   const [users, setUsers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");

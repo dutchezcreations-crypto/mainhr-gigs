@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, useRef } from "react";
 import { 
   User, 
@@ -17,11 +15,11 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import styles from "./Settings.module.css";
-import { useRouter } from "next/navigation";
+import { useNavigate } from "react-router-dom";
 
 export default function SettingsPage() {
-  const supabase = createClient();
-  const router = useRouter();
+  const supabase = createClient() as any;
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("profile");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);

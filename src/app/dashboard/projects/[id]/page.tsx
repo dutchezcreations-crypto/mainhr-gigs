@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { 
   ArrowLeft, 
@@ -17,15 +15,15 @@ import {
   Star
 } from "lucide-react";
 import styles from "../ProjectManagement.module.css";
-import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { createClient } from "@/lib/supabase/client";
 
 export default function ProjectManagementPage() {
   const params = useParams();
   const id = params?.id as string;
-  const router = useRouter();
-  const supabase = createClient();
+  const navigate = useNavigate();
+  const supabase = createClient() as any;
   
   const [job, setJob] = useState<any>(null);
   const [escrow, setEscrow] = useState<any>(null);
@@ -104,7 +102,7 @@ export default function ProjectManagementPage() {
       if (error) throw error;
 
       alert("Funds released successfully! The project is now completed.");
-      router.push("/dashboard/jobs");
+      navigate("/dashboard/jobs");
     } catch (err: any) {
       alert(err.message);
     } finally {
@@ -147,7 +145,7 @@ export default function ProjectManagementPage() {
       <div className="text-center py-20">
         <AlertCircle size={64} className="mx-auto mb-4 text-neutral-300" />
         <h2 className="text-2xl font-bold">Project not found</h2>
-        <Link href="/dashboard/jobs" className="text-primary-600 font-bold mt-4 inline-block">Back to Dashboard</Link>
+        <Link to="/dashboard/jobs" className="text-primary-600 font-bold mt-4 inline-block">Back to Dashboard</Link>
       </div>
     </div>
   );
@@ -159,7 +157,7 @@ export default function ProjectManagementPage() {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <Link href="/dashboard/jobs" className="inline-flex items-center gap-2 text-neutral-500 hover:text-neutral-900 mb-4 font-semibold">
+        <Link to="/dashboard/jobs" className="inline-flex items-center gap-2 text-neutral-500 hover:text-neutral-900 mb-4 font-semibold">
           <ArrowLeft size={16} /> Back to My Jobs
         </Link>
         <div className={styles.statusBadge}>{job.status.replace('_', ' ')}</div>
@@ -235,7 +233,7 @@ export default function ProjectManagementPage() {
                   <div className="text-xs font-bold text-neutral-400 uppercase tracking-wider">{isEmployer ? 'Freelancer' : 'Employer'}</div>
                 </div>
               </div>
-              <Link href={`/dashboard/messages?id=${hiredApp?.id}`} className="btn btn-ghost">
+              <Link to={`/dashboard/messages?id=${hiredApp?.id}`} className="btn btn-ghost">
                 <MessageSquare size={18} className="mr-2" /> Message
               </Link>
             </div>

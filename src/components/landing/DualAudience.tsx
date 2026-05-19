@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { 
   Building2, 
   UserCircle, 
@@ -52,10 +52,10 @@ export function DualAudience() {
             </ul>
 
             <div className={styles.cardFooter}>
-              <Link href="/auth/signup?role=employer" className="btn btn-primary">
+              <Link to="/auth/signup?role=employer" className="btn btn-primary">
                 Hire Top Talent <ArrowRight size={18} />
               </Link>
-              <Link href="/services" className={styles.footerLink}>
+              <Link to="/services" className={styles.footerLink}>
                 Browse Services
               </Link>
             </div>
@@ -102,10 +102,10 @@ export function DualAudience() {
             </ul>
 
             <div className={styles.cardFooter}>
-              <Link href="/auth/signup?role=freelancer" className="btn btn-accent">
+              <Link to="/auth/signup?role=freelancer" className="btn btn-accent">
                 Start Earning <ArrowRight size={18} />
               </Link>
-              <Link href="/jobs" className={styles.footerLink}>
+              <Link to="/jobs" className={styles.footerLink}>
                 Browse Open Jobs
               </Link>
             </div>

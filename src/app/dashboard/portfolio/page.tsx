@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, useRef } from "react";
 import { 
   Plus, 
@@ -14,7 +12,7 @@ import { createClient } from "@/lib/supabase/client";
 import styles from "./Portfolio.module.css";
 
 export default function PortfolioPage() {
-  const supabase = createClient();
+  const supabase = createClient() as any;
   const [portfolio, setPortfolio] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -1,15 +1,13 @@
-"use client";
-
 import { useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Mail, Lock, Chrome, Phone, ArrowRight, User, Building2, Loader2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import styles from "../AuthPages.module.css";
 
 export default function SignupPage() {
-  const router = useRouter();
-  const supabase = createClient();
+  const navigate = useNavigate();
+  const supabase = createClient() as any;
   const [role, setRole] = useState<"freelancer" | "employer">("freelancer");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -73,7 +71,7 @@ export default function SignupPage() {
           <h1 className={styles.title}>Check your email</h1>
           <p className={styles.subtitle}>We've sent a verification link to your email address.</p>
         </div>
-        <Link href="/auth/login" className="btn btn-primary btn-lg" style={{ width: "100%", marginTop: "2rem" }}>
+        <Link to="/auth/login" className="btn btn-primary btn-lg" style={{ width: "100%", marginTop: "2rem" }}>
           Back to Login
         </Link>
       </div>
@@ -184,7 +182,7 @@ export default function SignupPage() {
         </div>
 
         <p className={styles.terms}>
-          By signing up, you agree to our <Link href="/terms">Terms of Service</Link> and <Link href="/privacy">Privacy Policy</Link>.
+          By signing up, you agree to our <Link to="/terms">Terms of Service</Link> and <Link to="/privacy">Privacy Policy</Link>.
         </p>
 
         <button 
@@ -198,7 +196,7 @@ export default function SignupPage() {
       </form>
 
       <p className={styles.footer}>
-        Already have an account? <Link href="/auth/login" className={styles.link}>Sign in</Link>
+        Already have an account? <Link to="/auth/login" className={styles.link}>Sign in</Link>
       </p>
     </div>
   );
