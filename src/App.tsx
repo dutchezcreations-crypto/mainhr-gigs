@@ -15,6 +15,7 @@ import JobDetailPage from "@/app/jobs/[id]/page";
 
 import LoginPage from "@/app/auth/login/page";
 import SignupPage from "@/app/auth/signup/page";
+import AuthCallbackPage from "@/app/auth/callback/page";
 
 import DashboardPage from "@/app/dashboard/page";
 import ServicesPage from "@/app/dashboard/services/page";
@@ -132,6 +133,7 @@ export default function App() {
         <Route element={<AuthLayout />}>
           <Route path="/auth/login" element={<LoginPage />} />
           <Route path="/auth/signup" element={<SignupPage />} />
+          <Route path="/auth/callback" element={<AuthCallbackPage />} />
         </Route>
 
         {/* Protected Dashboard Routes */}
