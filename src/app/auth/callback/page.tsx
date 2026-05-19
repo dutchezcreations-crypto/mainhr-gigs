@@ -20,13 +20,32 @@ export default function AuthCallbackPage() {
         const next = searchParams.get("next") || "/dashboard";
 
         if (session) {
+          // If a role was selected during signup, update the user profile
+          const role = searchParams.get("role");
+          if (role === "employer" || role === "freelancer") {
+            await supabase
+              .from("profiles")
+              .update({ role })
+              .eq("id", session.user.id);
+          }
+
           setStatus("Authentication successful! Redirecting...");
           setTimeout(() => navigate(next, { replace: true }), 500);
         } else {
           // If no session is found, wait a tiny bit to see if onAuthStateChange fires
-          const { data: { subscription } } = supabase.auth.onAuthStateChange((event: string, session: any) => {
-            if (session) {
+          const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event: string, currentSession: any) => {
+            if (currentSession) {
               subscription.unsubscribe();
+              
+              // Handle role during late auth state changes
+              const role = searchParams.get("role");
+              if (role === "employer" || role === "freelancer") {
+                await supabase
+                  .from("profiles")
+                  .update({ role })
+                  .eq("id", currentSession.user.id);
+              }
+
               setStatus("Authentication successful! Redirecting...");
               navigate(next, { replace: true });
             }
