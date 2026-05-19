@@ -1,0 +1,212 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-neutral-500);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+  transition: color var(--transition-base);
+}
+
+.backBtn:hover {
+  color: var(--color-primary-600);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  color: var(--color-neutral-500);
+  font-size: 1rem;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex: 1;
+  position: relative;
+}
+
+.stepNum {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--color-neutral-100);
+  color: var(--color-neutral-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  z-index: 2;
+}
+
+.stepActive .stepNum {
+  background: var(--color-primary-600);
+  color: white;
+}
+
+.stepLabel {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-neutral-400);
+}
+
+.stepActive .stepLabel {
+  color: var(--color-neutral-900);
+}
+
+.stepLine {
+  position: absolute;
+  left: 28px;
+  right: -16px;
+  top: 14px;
+  height: 2px;
+  background: var(--color-neutral-100);
+  z-index: 1;
+}
+
+.stepActive .stepLine {
+  background: var(--color-primary-100);
+}
+
+.card {
+  background: white;
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-neutral-100);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.formStep {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.inputHint {
+  font-size: 0.8125rem;
+  color: var(--color-neutral-400);
+  margin-top: 4px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+}
+
+.priceInput {
+  position: relative;
+}
+
+.priceIcon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-neutral-400);
+}
+
+.priceInput input {
+  padding-left: 44px;
+}
+
+.radioGroup {
+  display: flex;
+  gap: var(--space-sm);
+  background: var(--color-neutral-50);
+  padding: 4px;
+  border-radius: var(--radius-lg);
+}
+
+.radioBtn {
+  flex: 1;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-neutral-500);
+  transition: all var(--transition-base);
+}
+
+.radioActive {
+  background: white;
+  color: var(--color-primary-600);
+  box-shadow: var(--shadow-sm);
+}
+
+.reviewBox {
+  background: var(--color-neutral-50);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.reviewItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.reviewLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-neutral-400);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.reviewVal {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-neutral-900);
+}
+
+.infoBox {
+  display: flex;
+  gap: var(--space-md);
+  background: var(--color-primary-50);
+  padding: var(--space-lg);
+  border-radius: var(--radius-xl);
+  color: var(--color-primary-700);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--color-neutral-100);
+}

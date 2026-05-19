@@ -1,0 +1,213 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-neutral-500);
+  width: fit-content;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-neutral-900);
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--color-neutral-500);
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-lg) 0;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  position: relative;
+}
+
+.stepNum {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-neutral-100);
+  color: var(--color-neutral-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  z-index: 2;
+}
+
+.stepActive .stepNum {
+  background: var(--color-primary-500);
+  color: white;
+}
+
+.stepLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-neutral-400);
+}
+
+.stepActive .stepLabel {
+  color: var(--color-neutral-900);
+}
+
+.stepLine {
+  position: absolute;
+  left: calc(100% + 1rem);
+  width: 100px;
+  height: 2px;
+  background: var(--color-neutral-100);
+  z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .stepLine {
+    display: none;
+  }
+}
+
+.card {
+  background: white;
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-neutral-100);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.formStep {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.inputHint {
+  font-size: 0.75rem;
+  color: var(--color-neutral-400);
+  margin-top: 4px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.radioGroup {
+  display: flex;
+  background: var(--color-neutral-50);
+  padding: 4px;
+  border-radius: var(--radius-lg);
+  gap: 4px;
+}
+
+.radioBtn {
+  flex: 1;
+  padding: 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-neutral-500);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.radioActive {
+  background: white;
+  color: var(--color-primary-600);
+  box-shadow: var(--shadow-sm);
+}
+
+.priceInput {
+  position: relative;
+}
+
+.priceIcon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-neutral-400);
+}
+
+.priceInput input {
+  padding-left: 36px !important;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--color-neutral-50);
+}
+
+.reviewBox {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  background: var(--color-neutral-50);
+  padding: var(--space-xl);
+  border-radius: var(--radius-xl);
+}
+
+.reviewItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.reviewLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-neutral-400);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.reviewVal {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-neutral-900);
+}
+
+.infoBox {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: var(--color-primary-50);
+  color: var(--color-primary-700);
+  border-radius: var(--radius-lg);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}

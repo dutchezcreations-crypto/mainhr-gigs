@@ -1,0 +1,179 @@
+.container {
+  padding: var(--space-2xl);
+}
+
+.header {
+  margin-bottom: var(--space-2xl);
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: 850;
+  color: var(--color-neutral-900);
+  margin-bottom: var(--space-xs);
+}
+
+.jobTitle {
+  font-size: 1rem;
+  color: var(--color-neutral-500);
+  font-weight: 600;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-md);
+  margin-bottom: var(--space-2xl);
+}
+
+.statCard {
+  background: white;
+  padding: var(--space-xl);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-neutral-100);
+}
+
+.statLabel {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-neutral-400);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-neutral-900);
+}
+
+.applicantGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+
+@media (min-width: 1024px) {
+  .applicantGrid {
+    grid-template-columns: 350px 1fr;
+  }
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.applicantCard {
+  background: white;
+  padding: var(--space-lg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-neutral-100);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.applicantCard:hover {
+  border-color: var(--color-primary-200);
+  box-shadow: var(--shadow-md);
+}
+
+.activeApplicant {
+  border-color: var(--color-primary-500);
+  background: var(--color-primary-50);
+}
+
+.applicantHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: var(--color-neutral-100);
+  border-radius: var(--radius-full);
+}
+
+.name {
+  font-weight: 700;
+  color: var(--color-neutral-900);
+  font-size: 0.9375rem;
+}
+
+.bid {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-primary-600);
+}
+
+.statusBadge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+}
+
+.status-pending { background: #FFFBEB; color: #B45309; }
+.status-shortlisted { background: #DBEAFE; color: #1E40AF; }
+.status-hired { background: #D1FAE5; color: #065F46; }
+.status-rejected { background: #FEE2E2; color: #991B1B; }
+
+.detailView {
+  background: white;
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-neutral-100);
+  padding: var(--space-3xl);
+  position: sticky;
+  top: var(--space-xl);
+  height: fit-content;
+}
+
+.detailHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-2xl);
+}
+
+.detailName {
+  font-size: 1.5rem;
+  font-weight: 850;
+  margin-bottom: 4px;
+}
+
+.detailTitle {
+  color: var(--color-neutral-500);
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.proposalBox {
+  background: var(--color-neutral-50);
+  padding: var(--space-xl);
+  border-radius: var(--radius-xl);
+  line-height: 1.6;
+  color: var(--color-neutral-700);
+  margin-bottom: var(--space-2xl);
+  white-space: pre-wrap;
+}
+
+.emptyState {
+  text-align: center;
+  padding: var(--space-3xl);
+  color: var(--color-neutral-400);
+}

@@ -1,0 +1,250 @@
+.container {
+  min-height: 100vh;
+  background: var(--color-neutral-50);
+}
+
+.hero {
+  background: white;
+  padding: var(--space-3xl) 0;
+  border-bottom: 1px solid var(--color-neutral-100);
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 850;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-xl);
+  text-align: center;
+}
+
+.searchSection {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.searchGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  background: white;
+  padding: 12px;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--color-neutral-100);
+}
+
+@media (min-width: 768px) {
+  .searchGrid {
+    grid-template-columns: 1.5fr 1fr 1fr auto;
+  }
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0 var(--space-md);
+  border-right: 0;
+}
+
+@media (min-width: 768px) {
+  .inputWrapper {
+    border-right: 1px solid var(--color-neutral-100);
+  }
+}
+
+.inputWrapper:last-child {
+  border-right: none;
+}
+
+.inputWrapper input, 
+.inputWrapper select {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  background: transparent;
+  padding: 8px 0;
+}
+
+.searchIcon {
+  color: var(--color-neutral-400);
+}
+
+.mainLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+  padding: var(--space-2xl) 0;
+}
+
+@media (min-width: 1024px) {
+  .mainLayout {
+    grid-template-columns: 280px 1fr;
+  }
+}
+
+.sidebar {
+  background: white;
+  padding: var(--space-xl);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-neutral-100);
+  height: fit-content;
+}
+
+.filterGroup {
+  margin-bottom: var(--space-xl);
+}
+
+.filterLabel {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-neutral-900);
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.checkboxList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.checkboxItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.875rem;
+  color: var(--color-neutral-600);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.checkboxItem:hover {
+  color: var(--color-primary-600);
+}
+
+.checkboxItem input {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid var(--color-neutral-300);
+}
+
+.jobList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.jobCard {
+  background: white;
+  padding: var(--space-xl);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-neutral-100);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.jobCard:hover {
+  border-color: var(--color-primary-200);
+  box-shadow: var(--shadow-md);
+}
+
+@media (min-width: 640px) {
+  .jobCard {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.companyLogo {
+  width: 48px;
+  height: 48px;
+  background: var(--color-neutral-50);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-neutral-400);
+}
+
+.jobContent {
+  flex: 1;
+}
+
+.jobHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-xs);
+}
+
+.jobTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-neutral-900);
+}
+
+.jobPrice {
+  font-weight: 700;
+  color: var(--color-primary-600);
+}
+
+.jobMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  color: var(--color-neutral-500);
+  font-size: 0.875rem;
+  margin-bottom: var(--space-md);
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.jobTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.jobTag {
+  background: var(--color-neutral-50);
+  padding: 4px 10px;
+  border-radius: var(--radius-md);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-neutral-600);
+}
+
+.empty {
+  padding: var(--space-3xl);
+  text-align: center;
+  background: white;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-neutral-100);
+  color: var(--color-neutral-400);
+}
+
+.loadingSkeleton {
+  height: 140px;
+  background: white;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-neutral-100);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.5; }
+}

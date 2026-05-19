@@ -1,0 +1,202 @@
+.container {
+  padding-top: var(--space-3xl);
+  padding-bottom: var(--space-3xl);
+  background: var(--color-neutral-50);
+  min-height: 100vh;
+}
+
+.profileHeader {
+  background: white;
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-neutral-100);
+  padding: var(--space-3xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.headerContent {
+  display: flex;
+  gap: var(--space-3xl);
+  align-items: center;
+}
+
+.avatar {
+  width: 140px;
+  height: 140px;
+  background: var(--color-neutral-100);
+  border-radius: var(--radius-3xl);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mainInfo {
+  flex: 1;
+}
+
+.nameRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-xs);
+}
+
+.name {
+  font-size: 2rem;
+  font-weight: 850;
+  color: var(--color-neutral-900);
+}
+
+.badge {
+  background: var(--color-primary-50);
+  color: var(--color-primary-600);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.headline {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-neutral-600);
+  margin-bottom: var(--space-md);
+}
+
+.metaGrid {
+  display: flex;
+  gap: var(--space-2xl);
+  margin-top: var(--space-lg);
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--color-neutral-500);
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.metaItem strong {
+  color: var(--color-neutral-900);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: var(--space-2xl);
+}
+
+.card {
+  background: white;
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-neutral-100);
+  padding: var(--space-2xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 850;
+  color: var(--color-neutral-900);
+  margin-bottom: var(--space-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.bio {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--color-neutral-600);
+  white-space: pre-wrap;
+}
+
+.skillsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.skillBadge {
+  background: var(--color-neutral-50);
+  color: var(--color-neutral-700);
+  padding: 8px 16px;
+  border-radius: var(--radius-xl);
+  font-size: 0.875rem;
+  font-weight: 700;
+  border: 1px solid var(--color-neutral-100);
+}
+
+.sidebarCard {
+  position: sticky;
+  top: 100px;
+}
+
+.priceBlock {
+  margin-bottom: var(--space-xl);
+}
+
+.priceValue {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--color-neutral-900);
+}
+
+.priceValue span {
+  font-size: 0.875rem;
+  color: var(--color-neutral-400);
+  font-weight: 700;
+}
+
+.actionBtns {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.portfolioGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+}
+
+.portfolioItem {
+  aspect-ratio: 16/10;
+  background: var(--color-neutral-100);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+}
+
+.portfolioItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 992px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .headerContent {
+    flex-direction: column;
+    text-align: center;
+  }
+  .nameRow {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+  }
+  .metaGrid {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,404 @@
+.container {
+  padding-top: var(--space-4xl);
+  padding-bottom: var(--space-5xl);
+  background: white;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background gradient glows */
+.glowTop {
+  position: absolute;
+  top: -10%;
+  left: 10%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(175, 56, 43, 0.04) 0%, rgba(255, 255, 255, 0) 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.glowAccent {
+  position: absolute;
+  top: 30%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(223, 177, 34, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto var(--space-3xl) auto;
+  position: relative;
+  z-index: 1;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--color-primary-50);
+  color: var(--color-primary-700);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-md);
+  border: 1px solid var(--color-primary-100);
+}
+
+.title {
+  font-size: 2.75rem;
+  font-weight: 900;
+  color: var(--color-neutral-900);
+  letter-spacing: -1px;
+  margin-bottom: var(--space-sm);
+  line-height: 1.15;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--color-neutral-500);
+  line-height: 1.6;
+}
+
+/* Toggle Switch Styling */
+.toggleContainer {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  background: var(--color-neutral-50);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-neutral-200);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-neutral-500);
+}
+
+.activeCycle {
+  color: var(--color-neutral-900);
+}
+
+.toggleBtn {
+  width: 50px;
+  height: 28px;
+  background: var(--color-primary-600);
+  border-radius: var(--radius-full);
+  position: relative;
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.toggleCircle {
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: var(--radius-full);
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  transition: transform var(--transition-fast) cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: var(--shadow-sm);
+}
+
+.toggleRight {
+  transform: translateX(22px);
+}
+
+.saveBadge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: #059669;
+  color: white;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  margin-left: 4px;
+}
+
+/* Pricing Grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Plan Card Styling */
+.card {
+  background: white;
+  border: 1px solid var(--color-neutral-100);
+  border-radius: 24px;
+  padding: var(--space-2xl) var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--color-neutral-200);
+}
+
+.popularCard {
+  border: 2px solid var(--color-primary-500);
+  box-shadow: var(--shadow-glow);
+}
+
+.popularCard:hover {
+  border-color: var(--color-primary-600);
+  box-shadow: var(--shadow-xl), var(--shadow-glow);
+}
+
+.accentCard {
+  border-color: var(--color-accent-300);
+}
+
+.accentCard:hover {
+  border-color: var(--color-accent-400);
+}
+
+.popularBadge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gradient-primary);
+  color: white;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.725rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: var(--shadow-md);
+}
+
+.cardHeader {
+  margin-bottom: var(--space-lg);
+}
+
+.planName {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: var(--color-neutral-900);
+  margin-bottom: 4px;
+  letter-spacing: -0.5px;
+}
+
+.planDesc {
+  font-size: 0.85rem;
+  color: var(--color-neutral-500);
+  line-height: 1.5;
+  margin-bottom: var(--space-lg);
+  min-height: 48px;
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.currency {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-neutral-950);
+}
+
+.amount {
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: var(--color-neutral-900);
+  letter-spacing: -1px;
+}
+
+.period {
+  font-size: 0.9rem;
+  color: var(--color-neutral-400);
+  font-weight: 700;
+}
+
+.yearlySavings {
+  font-size: 0.725rem;
+  font-weight: 700;
+  color: #059669;
+  margin-top: 4px;
+}
+
+.divider {
+  height: 1px;
+  background: var(--color-neutral-100);
+  margin: var(--space-lg) 0;
+}
+
+.featureTitle {
+  font-size: 0.825rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--color-neutral-900);
+  letter-spacing: 0.5px;
+  margin-bottom: var(--space-md);
+}
+
+.featureList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: var(--space-xl);
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-neutral-600);
+  line-height: 1.45;
+}
+
+.featureItem svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.cardFooter {
+  margin-top: auto;
+}
+
+/* Escrow Banner Styling */
+.escrowBanner {
+  margin-top: var(--space-4xl);
+  background: var(--color-primary-50);
+  border: 1px solid var(--color-primary-100);
+  border-radius: 24px;
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-md);
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .escrowBanner {
+    flex-direction: row;
+    text-align: left;
+    padding: var(--space-2xl);
+    gap: var(--space-lg);
+  }
+}
+
+.escrowIcon {
+  background: white;
+  padding: var(--space-md);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.escrowTitle {
+  font-weight: 900;
+  font-size: 1.25rem;
+  color: var(--color-primary-900);
+  margin-bottom: 6px;
+}
+
+.escrowDesc {
+  font-size: 0.925rem;
+  font-weight: 600;
+  color: var(--color-primary-700);
+  line-height: 1.5;
+}
+
+/* FAQ Section Styling */
+.faqSection {
+  margin-top: var(--space-4xl);
+  position: relative;
+  z-index: 1;
+}
+
+.faqHeading {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 850;
+  color: var(--color-neutral-900);
+  margin-bottom: var(--space-3xl);
+  letter-spacing: -0.5px;
+}
+
+.faqGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .faqGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.faqItem {
+  background: var(--color-neutral-50);
+  border: 1px solid var(--color-neutral-100);
+  padding: var(--space-lg);
+  border-radius: var(--radius-xl);
+  transition: all var(--transition-fast);
+}
+
+.faqItem:hover {
+  border-color: var(--color-neutral-200);
+  background: white;
+  box-shadow: var(--shadow-md);
+}
+
+.faqQuestion {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-weight: 750;
+  font-size: 0.95rem;
+  color: var(--color-neutral-900);
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+
+.faqQuestion svg {
+  margin-top: 2px;
+}
+
+.faqAnswer {
+  font-size: 0.85rem;
+  color: var(--color-neutral-500);
+  line-height: 1.6;
+  padding-left: 28px;
+}

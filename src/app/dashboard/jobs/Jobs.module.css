@@ -1,0 +1,237 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-neutral-900);
+}
+
+.subtitle {
+  font-size: 0.9375rem;
+  color: var(--color-neutral-500);
+}
+
+.tabs {
+  display: flex;
+  gap: var(--space-xl);
+  border-bottom: 1px solid var(--color-neutral-100);
+  margin-bottom: var(--space-md);
+}
+
+.tab {
+  padding: var(--space-md) 0;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-neutral-500);
+  background: none;
+  border: none;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.tab:hover {
+  color: var(--color-neutral-900);
+}
+
+.activeTab {
+  color: var(--color-primary-600);
+}
+
+.activeTab::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-primary-600);
+}
+
+.filters {
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+
+.search {
+  flex: 1;
+  position: relative;
+  max-width: 400px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-neutral-400);
+}
+
+.search input {
+  width: 100%;
+  padding: 0.625rem 1rem 0.625rem 42px;
+  background: white;
+  border: 1px solid var(--color-neutral-100);
+  border-radius: var(--radius-lg);
+  outline: none;
+  font-size: 0.875rem;
+}
+
+.filterBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.625rem 1rem;
+  background: white;
+  border: 1px solid var(--color-neutral-100);
+  border-radius: var(--radius-lg);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-neutral-700);
+}
+
+.card {
+  background: white;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-neutral-100);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th {
+  padding: var(--space-lg);
+  background: var(--color-neutral-50);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-neutral-500);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--color-neutral-100);
+}
+
+.table td {
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--color-neutral-50);
+  vertical-align: middle;
+}
+
+.jobInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.jobTitle {
+  font-weight: 700;
+  color: var(--color-neutral-900);
+  font-size: 0.9375rem;
+}
+
+.jobMeta {
+  font-size: 0.8125rem;
+  color: var(--color-neutral-500);
+}
+
+.apps {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: var(--color-neutral-600);
+}
+
+.status {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.statusActive, .statusopen {
+  background: var(--color-success-50);
+  color: var(--color-success-600);
+}
+
+.statusReviewing, .statuspending {
+  background: var(--color-warning-50);
+  color: var(--color-warning-500);
+}
+
+.statusDraft, .statusdraft {
+  background: var(--color-neutral-100);
+  color: var(--color-neutral-500);
+}
+
+.statusInProgress, .statusin_progress {
+  background: var(--color-primary-50);
+  color: var(--color-primary-600);
+}
+
+.statusCompleted, .statuscompleted {
+  background: var(--color-neutral-900);
+  color: white;
+}
+
+.empty {
+  padding: var(--space-3xl);
+  text-align: center;
+  color: var(--color-neutral-400);
+}
+
+
+.date {
+  font-size: 0.875rem;
+  color: var(--color-neutral-500);
+}
+
+.actions {
+  display: flex;
+  gap: 4px;
+}
+
+.actionBtn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-neutral-400);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.actionBtn:hover {
+  background: var(--color-neutral-50);
+  color: var(--color-neutral-900);
+}

@@ -1,0 +1,216 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.header {
+  margin-bottom: var(--space-sm);
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: var(--color-neutral-950);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 0.9375rem;
+  color: var(--color-neutral-500);
+}
+
+.socialActions {
+  display: flex;
+  flex-direction: column;
+}
+
+.socialBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: 0.75rem;
+  background: white;
+  border: 1.5px solid var(--color-neutral-200);
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  color: var(--color-neutral-700);
+  transition: all var(--transition-fast);
+}
+
+.socialBtn:hover {
+  background: var(--color-neutral-50);
+  border-color: var(--color-neutral-300);
+}
+
+.divider {
+  position: relative;
+  text-align: center;
+  margin: var(--space-xs) 0;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-neutral-200);
+}
+
+.divider span {
+  position: relative;
+  background: white;
+  padding: 0 var(--space-md);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-neutral-400);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tabs {
+  display: flex;
+  background: var(--color-neutral-50);
+  padding: 4px;
+  border-radius: var(--radius-lg);
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-neutral-500);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.tabActive {
+  background: white;
+  color: var(--color-primary-600);
+  box-shadow: var(--shadow-sm);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-neutral-400);
+  pointer-events: none;
+}
+
+.inputWrapper :global(.input) {
+  padding-left: 42px;
+  width: 100%;
+}
+
+.forgotLink {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-primary-600);
+}
+
+.footer {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-neutral-500);
+}
+
+.link {
+  font-weight: 700;
+  color: var(--color-primary-600);
+}
+
+.terms {
+  font-size: 0.75rem;
+  color: var(--color-neutral-400);
+  line-height: 1.5;
+}
+
+.terms a {
+  color: var(--color-neutral-600);
+  text-decoration: underline;
+}
+
+/* Role Selector for Signup */
+.roleSelector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.roleBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: white;
+  border: 1.5px solid var(--color-neutral-200);
+  border-radius: var(--radius-xl);
+  text-align: left;
+  transition: all var(--transition-base);
+}
+
+.roleActive {
+  border-color: var(--color-primary-500);
+  background: var(--color-primary-50);
+  box-shadow: 0 0 0 1px var(--color-primary-500);
+}
+
+.roleIcon {
+  width: 44px;
+  height: 44px;
+  background: var(--color-neutral-100);
+  color: var(--color-neutral-500);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition-base);
+}
+
+.roleActive .roleIcon {
+  background: var(--color-primary-500);
+  color: white;
+}
+
+.roleContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.roleTitle {
+  font-weight: 700;
+  color: var(--color-neutral-900);
+}
+
+.roleDesc {
+  font-size: 0.8125rem;
+  color: var(--color-neutral-500);
+}
