@@ -545,12 +545,12 @@ export default function BillingPage() {
                       />
                     </div>
                     {/* Presets */}
-                    <div className="flex gap-2 flex-wrap mt-2">
+                    <div className={styles.presetsGrid}>
                       {["100000", "250000", "500000", "1000000"].map(preset => (
                         <button 
                           key={preset}
                           type="button"
-                          className="px-3 py-1.5 bg-neutral-50 hover:bg-neutral-100 text-xs font-bold rounded-lg border border-neutral-200 transition text-neutral-600"
+                          className={styles.presetBtn}
                           onClick={() => setDepositAmount(preset)}
                         >
                           UGX {parseInt(preset).toLocaleString()}
@@ -581,12 +581,12 @@ export default function BillingPage() {
                   </div>
 
                   {depositMethod === 'momo' ? (
-                    <div className="space-y-4 p-4 bg-neutral-50 rounded-xl border border-neutral-100">
-                      <div className="flex gap-3">
+                    <div className={styles.subModalContainer}>
+                      <div className={styles.providerGrid}>
                         <button
                           type="button"
-                          className={`flex-1 py-2 text-xs font-extrabold rounded-lg border transition ${
-                            momoProvider === 'mtn' ? 'bg-amber-100 border-amber-300 text-amber-800' : 'bg-white border-neutral-200 text-neutral-600'
+                          className={`${styles.providerBtn} ${
+                            momoProvider === 'mtn' ? styles.providerBtnMtnActive : ''
                           }`}
                           onClick={() => setMomoProvider('mtn')}
                         >
@@ -594,15 +594,15 @@ export default function BillingPage() {
                         </button>
                         <button
                           type="button"
-                          className={`flex-1 py-2 text-xs font-extrabold rounded-lg border transition ${
-                            momoProvider === 'airtel' ? 'bg-red-100 border-red-300 text-red-800' : 'bg-white border-neutral-200 text-neutral-600'
+                          className={`${styles.providerBtn} ${
+                            momoProvider === 'airtel' ? styles.providerBtnAirtelActive : ''
                           }`}
                           onClick={() => setMomoProvider('airtel')}
                         >
                           Airtel Money
                         </button>
                       </div>
-                      <div className="space-y-1">
+                      <div className={styles.inputGroup}>
                         <label className="text-xs font-bold text-neutral-400">Mobile Money Number</label>
                         <input 
                           type="text" 
@@ -615,8 +615,8 @@ export default function BillingPage() {
                       </div>
                     </div>
                   ) : (
-                    <div className="space-y-4 p-4 bg-neutral-50 rounded-xl border border-neutral-100">
-                      <div className="space-y-1">
+                    <div className={styles.subModalContainer}>
+                      <div className={styles.inputGroup}>
                         <label className="text-xs font-bold text-neutral-400">Card Number</label>
                         <input 
                           type="text" 
@@ -627,8 +627,8 @@ export default function BillingPage() {
                           onChange={e => setCardNumber(e.target.value)}
                         />
                       </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="space-y-1">
+                      <div className={styles.inputRow}>
+                        <div className={styles.inputGroup}>
                           <label className="text-xs font-bold text-neutral-400">Expiry Date</label>
                           <input 
                             type="text" 
@@ -639,7 +639,7 @@ export default function BillingPage() {
                             onChange={e => setCardExpiry(e.target.value)}
                           />
                         </div>
-                        <div className="space-y-1">
+                        <div className={styles.inputGroup}>
                           <label className="text-xs font-bold text-neutral-400">CVC</label>
                           <input 
                             type="password" 

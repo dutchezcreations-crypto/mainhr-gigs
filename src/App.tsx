@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate, useLocation, Outlet } from "react-router-dom";
-import { createClient } from "@/lib/supabase/client";
+import { useAuth } from "@/context/AuthContext";
+import { FullscreenLoader } from "@/components/ui/FullscreenLoader";
 
 // Pages
 import HomePage from "@/app/page";
@@ -47,27 +47,14 @@ import AuthLayout from "@/app/auth/layout";
 
 // Route Guard to verify user is logged in
 function ProtectedRoute() {
-  const supabase = createClient() as any;
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const { user, isLoading } = useAuth();
   const location = useLocation();
 
-  useEffect(() => {
-    async function checkAuth() {
-      const { data: { user } } = await supabase.auth.getUser();
-      setIsAuthenticated(!!user);
-    }
-    checkAuth();
-  }, [supabase]);
-
-  if (isAuthenticated === null) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-neutral-50">
-        <p className="text-neutral-500 font-semibold animate-pulse">Loading account...</p>
-      </div>
-    );
+  if (isLoading) {
+    return <FullscreenLoader message="Loading account..." />;
   }
 
-  if (!isAuthenticated) {
+  if (!user) {
     return <Navigate to={`/auth/login?redirectTo=${encodeURIComponent(location.pathname)}`} replace />;
   }
 
@@ -76,33 +63,10 @@ function ProtectedRoute() {
 
 // Route Guard to verify user is admin
 function AdminRoute() {
-  const supabase = createClient() as any;
-  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
+  const { isAdmin, isLoading } = useAuth();
 
-  useEffect(() => {
-    async function checkAdmin() {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        setIsAdmin(false);
-        return;
-      }
-      const { data: profile } = (await supabase
-        .from("profiles")
-        .select("role")
-        .eq("id", user.id)
-        .single()) as any;
-      
-      setIsAdmin(profile?.role === "admin");
-    }
-    checkAdmin();
-  }, [supabase]);
-
-  if (isAdmin === null) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-neutral-50">
-        <p className="text-neutral-500 font-semibold animate-pulse">Verifying admin permissions...</p>
-      </div>
-    );
+  if (isLoading) {
+    return <FullscreenLoader message="Verifying admin permissions..." />;
   }
 
   if (!isAdmin) {
@@ -154,6 +118,8 @@ export default function App() {
             <Route path="/dashboard/messages" element={<MessagesPage />} />
             <Route path="/dashboard/projects/:id" element={<ProjectDetailPage />} />
             <Route path="/dashboard/settings" element={<SettingsPage />} />
+            {/* Fallback for unknown dashboard routes */}
+            <Route path="/dashboard/*" element={<Navigate to="/dashboard" replace />} />
           </Route>
         </Route>
 
@@ -166,6 +132,8 @@ export default function App() {
               <Route path="/admin/users" element={<AdminUsersPage />} />
               <Route path="/admin/gigs" element={<AdminGigsPage />} />
               <Route path="/admin/jobs" element={<AdminJobsPage />} />
+              {/* Fallback for unknown admin routes */}
+              <Route path="/admin/*" element={<Navigate to="/admin" replace />} />
             </Route>
           </Route>
         </Route>

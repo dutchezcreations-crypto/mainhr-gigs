@@ -1,0 +1,196 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-neutral-900, #0f172a);
+  border: 1px solid var(--color-neutral-800, #1e293b);
+  border-radius: var(--radius-2xl, 1.5rem);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  color: white;
+  cursor: pointer;
+  /* Dark luxury aesthetic */
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border-color: rgba(245, 158, 11, 0.4); /* Matches Tailwind amber-500/40 */
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.avatarContainer {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: var(--color-neutral-800, #1e293b);
+}
+
+.onlineIndicator {
+  position: absolute;
+  bottom: 0.125rem;
+  right: 0.125rem;
+  width: 0.875rem;
+  height: 0.875rem;
+  background-color: #10b981; /* Tailwind emerald-500 */
+  border: 2px solid var(--color-neutral-900, #0f172a);
+  border-radius: 50%;
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* for text truncation if needed */
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.verifiedIcon {
+  color: #fbbf24; /* Tailwind amber-400 */
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 0.875rem;
+  color: var(--color-neutral-400, #94a3b8);
+  margin-top: 0.125rem;
+}
+
+.skillsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.skillPill {
+  background-color: var(--color-neutral-800, #1e293b);
+  color: #fbbf24; /* Tailwind amber-400 */
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.statsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto; /* pushes to bottom */
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-neutral-800, #1e293b);
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.starIcon {
+  color: #fbbf24;
+  width: 1rem;
+  height: 1rem;
+}
+
+.starIconEmpty {
+  color: var(--color-neutral-700, #334155);
+  width: 1rem;
+  height: 1rem;
+}
+
+.ratingValue {
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: white;
+  margin-left: 0.125rem;
+}
+
+.reviewCount {
+  font-size: 0.75rem;
+  color: var(--color-neutral-400, #94a3b8);
+}
+
+.price {
+  text-align: right;
+}
+
+.priceLabel {
+  font-size: 0.75rem;
+  color: var(--color-neutral-400, #94a3b8);
+  display: block;
+}
+
+.priceValue {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.75); /* neutral-900 with opacity */
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.card:hover .overlay {
+  opacity: 1;
+}
+
+.viewProfileBtn {
+  background: var(--gradient-accent, linear-gradient(135deg, #dfb122 0%, #c39818 100%));
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-lg, 0.75rem);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.viewProfileBtn:hover {
+  transform: scale(1.05);
+}
